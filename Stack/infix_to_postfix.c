@@ -20,15 +20,18 @@ char pop(){
         return stack[top--];
     }
 }
-int expcheck(char x){
-    if(x=='('){
-        return 0;
+int expcheck(char x){               // OPERATOR PRECEDENCE
+    if(x=='('){                 // ( OR ) 1
+        return 0;              
     }
-    if(x=='+'||x=='-'){
-        return 1;
+     if(x=='^'){                // ^ 4
+         return 3;
+     }
+    if(x=='+'||x=='-'/*||x=='^'*/){
+        return 1;             // + or - 2
     }
     if(x=='*'||x=='/'){
-        return 2;
+        return 2;            // * OR /  3
     }
     return 0;
 }
@@ -52,7 +55,7 @@ int main(){
         else
         {
             while(expcheck(stack[top])>=expcheck(*e))
-                printf("%c ",pop());
+                printf("%c",pop());
             push(*e);
             
         }
@@ -62,7 +65,6 @@ int main(){
         printf("%c",pop());
     }
     return 0;
-
 }
 
 /*
@@ -70,4 +72,9 @@ INPUT
 a+b*c
 OUTPUT
 abc*+ 
+
+INPUT (with bitwise operator)
+(a+b)*(c^d+e)^(f+g)*h
+OUTPUT
+ab+cd^e+fg+^*h*
 */
