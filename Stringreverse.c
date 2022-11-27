@@ -23,14 +23,14 @@ int main()
    }
    return 0;
 }
-void push(char a)
+void push(char x)
 {
     if(Top>=size-1)
     {
         printf("stack overflow");
     }
     else{
-        stack[++Top]=a;
+        stack[++Top]=x;
     }
 
 }
